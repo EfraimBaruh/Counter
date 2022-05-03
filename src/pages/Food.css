@@ -1,0 +1,22 @@
+.center{
+    margin-top: 35%;
+    align-items: center;
+    background: url('../../public/assets/imgs/food.jpg') no-repeat center center/cover;
+}
+.listelement{
+    margin-top: 5%;
+    height: 80px;
+}
+.padding{
+    padding-top: 5%;
+}
+
+.background-image {
+    background: url('../../public/assets/imgs/food.jpg') no-repeat 100% 100%;
+    mask-image:  url('../../public/assets/imgs/food.jpg') no-repeat 100% 100%;
+    border-image: url('../../public/assets/imgs/food.jpg') no-repeat 100% 100%;;
+  }
+.setright{
+     position: relative;
+     left: 40%;
+}
