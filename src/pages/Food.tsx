@@ -4,16 +4,30 @@ import { error } from 'console';
 import { useState } from 'react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Food.css';
+import {Storage} from "@ionic/storage";
 
- 
+const store = new Storage();
+
 const Food: React.FC = () => {
   const [Total, SetTotal] = useState(0);
   const [big, SetBig] = useState(10);
   const [medium, SetMedium] = useState(8);
   const [small, SetSmall] = useState(12);
 
-  const handleClick = (value: any) => () => console.log(value)
-
+  const setData = async () => {
+      await store.set('Total', Total);
+      await store.set('big', big);
+      await store.set('medium', medium);
+      await store.set('small', small);
+  };
+    const getData = async () => {
+        const { Total } = await store.get('Total');
+        const { big } = await store.get('Total');
+        const { medium } = await store.get('Total');
+        const { small } = await store.get('Total');
+        
+    };
+  
   function ActionLink(value: number, cval: any) {
     function handleClick(e: { preventDefault: () => void; }) {
       e.preventDefault();
@@ -21,6 +35,7 @@ const Food: React.FC = () => {
     }
 
     const val = cval - 1;
+    setData();
     if(cval == 0){
       return(SetTotal(value + Total))
     }
@@ -45,6 +60,7 @@ const Food: React.FC = () => {
     
   }
   
+  
   return (
     <IonPage>
       <IonHeader>
@@ -53,6 +69,7 @@ const Food: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen class='background-image'>
+          <IonButton class='ion-align-items-center' color='warning' onClick={() => getData()}>Load</IonButton>
           <IonList class='center' color='warning-shade'>
           <IonButton expand="block" shape='round' color='danger' class='listelement' onClick={ () => ActionLink(55, big)}>55 TL
           <IonBadge class='setright' color="dark">{big}</IonBadge>
@@ -75,5 +92,6 @@ const Food: React.FC = () => {
 };
 
 export default Food;
+
 
 
